@@ -73,8 +73,8 @@ const Site: Site = {
             url: 'https://prepair.com/'
         },
         location: {
-            city: 'Jabalpur',
-            region: 'Madhya Pradesh',
+            city: 'Pune',
+            region: 'Maharashtra',
             country: 'India'
         }
     },
