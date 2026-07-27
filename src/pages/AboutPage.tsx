@@ -1,28 +1,6 @@
 import React from 'react';
-import { IconBrandGithub, IconBrandLinkedin, IconMail, IconStar } from '@tabler/icons-react';
+import { IconBrandGithub, IconBrandLinkedin, IconMail } from '@tabler/icons-react';
 import Site from '../config/common';
-
-const GithubProject: React.FC<{ title: string; href: string; stars: number }> = ({
-	title,
-	href,
-	stars
-}) => (
-	<>
-		<a
-			href={href}
-			id={title.toLowerCase()}
-			target="_blank"
-			rel="noopener noreferrer"
-			className="link"
-		>
-			{title}
-		</a>
-		<span className="inline-flex items-center space-x-1 text-sm">
-			{stars}
-			<IconStar className="ml-1" size={14} />
-		</span>
-	</>
-);
 
 export const AboutPage: React.FC = () => {
 	const handleEmailClick = () => {
