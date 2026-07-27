@@ -1,0 +1,28 @@
+<svg width="960" height="540" viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">DXTalent dashboard illustration</title>
+  <desc id="desc">Abstract dashboard mockup for the DXTalent project</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#facc15" />
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" rx="32" fill="url(#bg)" />
+  <g transform="translate(80,80)">
+    <rect width="800" height="380" rx="24" fill="#0b1220" opacity="0.75" />
+    <rect x="40" y="48" width="280" height="160" rx="16" fill="#111827" />
+    <rect x="360" y="48" width="360" height="72" rx="16" fill="#111827" />
+    <rect x="360" y="144" width="360" height="64" rx="16" fill="#111827" />
+    <rect x="40" y="232" width="680" height="96" rx="16" fill="#111827" />
+    <rect x="560" y="280" width="160" height="40" rx="12" fill="url(#card)" />
+    <text x="60" y="100" fill="#f8fafc" font-family="'JetBrains Mono', 'Segoe UI', sans-serif" font-size="28" font-weight="600">DX playbooks</text>
+    <text x="380" y="95" fill="#b6c2ff" font-family="'JetBrains Mono', 'Segoe UI', sans-serif" font-size="16">Realtime maturity score · Stripe subscriptions</text>
+    <text x="60" y="280" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="18">Gemini-generated lesson plans · recruiter workflows · anti-cheat gamification</text>
+  </g>
+  <text x="80" y="470" fill="#f8fafc" font-family="'JetBrains Mono', 'Segoe UI', sans-serif" font-size="32" font-weight="600">DXTalent</text>
+  <text x="80" y="505" fill="#cbd5f5" font-family="'Segoe UI', sans-serif" font-size="20">AI-powered DX learning platform</text>
+</svg>

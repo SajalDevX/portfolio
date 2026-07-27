@@ -1,0 +1,32 @@
+<svg width="960" height="540" viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Pathos VS Code extension illustration</title>
+  <desc id="desc">Abstract visualization for Pathos developer activity tracker</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#312e81" />
+    </linearGradient>
+    <linearGradient id="pulse" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#22d3ee" />
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" rx="32" fill="url(#bg)" />
+  <g transform="translate(100,90)">
+    <rect width="760" height="360" rx="24" fill="#0b1120" opacity="0.85" />
+    <rect x="40" y="50" width="300" height="220" rx="18" fill="#141b2c" />
+    <rect x="380" y="50" width="320" height="60" rx="12" fill="#141b2c" />
+    <rect x="380" y="130" width="320" height="60" rx="12" fill="#141b2c" />
+    <rect x="380" y="210" width="320" height="60" rx="12" fill="#141b2c" />
+    <rect x="40" y="290" width="660" height="60" rx="14" fill="#141b2c" />
+    <polyline points="60,240 120,180 180,210 240,140 300,200" fill="none" stroke="url(#pulse)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="120" cy="180" r="10" fill="url(#pulse)" />
+    <circle cx="240" cy="140" r="10" fill="url(#pulse)" />
+    <rect x="420" y="290" width="200" height="24" rx="8" fill="url(#pulse)" />
+    <text x="420" y="115" fill="#94a3b8" font-family="'JetBrains Mono', 'Segoe UI', sans-serif" font-size="16">GitHub OAuth · project scaffolding</text>
+    <text x="420" y="195" fill="#94a3b8" font-family="'JetBrains Mono', 'Segoe UI', sans-serif" font-size="16">MiniWatch powered activity stream</text>
+    <text x="420" y="275" fill="#94a3b8" font-family="'JetBrains Mono', 'Segoe UI', sans-serif" font-size="16">Mermaid reports · Gemini analysis</text>
+  </g>
+  <text x="100" y="470" fill="#f8fafc" font-family="'JetBrains Mono', 'Segoe UI', sans-serif" font-size="32" font-weight="600">Pathos</text>
+  <text x="100" y="505" fill="#cbd5f5" font-family="'Segoe UI', sans-serif" font-size="20">VS Code extension for honest productivity metrics</text>
+</svg>
