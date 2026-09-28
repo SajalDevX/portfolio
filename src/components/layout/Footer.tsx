@@ -65,12 +65,12 @@ export const Footer: React.FC<FooterProps> = ({ value }) => {
 
           <span className="text-surface0 hidden md:inline">-</span>
 
-          <div className="flex items-center gap-1 whitespace-nowrap" title="Service Status">
+          <div className="flex items-center gap-1 whitespace-nowrap" title="Location">
             <span className="relative mr-1.5 flex h-3 w-3">
               <span className="bg-green/75 absolute inline-flex h-full w-full animate-ping rounded-full" style={{ animationDuration: '2000ms' }}></span>
               <span className="bg-green relative inline-flex h-3 w-3 rounded-full"></span>
             </span>
-            <span className="text-subtext1 text-sm font-medium">All Services Nominal</span>
+            <span className="text-subtext1 text-sm font-medium">Pune, IN · IST</span>
           </div>
         </div>
 
@@ -88,11 +88,11 @@ export const Footer: React.FC<FooterProps> = ({ value }) => {
             </span>
           ) : (
             <a
-              href={Site.out.calcom}
+              href={Site.out.email}
               className="text-subtext1 hover:text-accent transition-colors duration-200"
-              title="Reach out—always happy to chat about DX"
+              title="Email me"
             >
-              Open for collaborations
+              Open to Android & backend roles
             </a>
           )}
 

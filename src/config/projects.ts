@@ -3,11 +3,13 @@ export interface Project {
     title: string;
     description: string;
     fullDescription: string;
+    highlights: string[];
     date: string;
     languages: string[];
     tags: string[];
     github?: string;
     live?: string;
+    liveLabel?: string;
     image?: {
         url: string;
         alt: string;
@@ -16,175 +18,151 @@ export interface Project {
     githubInfo?: {
         owner: string;
         repo: string;
-        stars?: number;
-        contributors?: number;
     };
 }
 
+const cover = (slug: string, alt: string) => ({ url: `/images/projects/${slug}.svg`, alt });
+
 export const projects: Project[] = [
     {
-        slug: 'dxtalent',
-        title: 'DXTalent',
-        description: 'AI-powered DX learning marketplace with Stripe monetization and gamified credibility engine',
-        fullDescription: 'DXTalent is an AI-powered learning platform for skill development and recruitment. It uses gamification to help users practice coding skills and connects top learners with recruiters via an integrated marketplace. Specifically, DXTalent generates educational content using AI and motivates users with game-like lessons and challenges. It provides an analytics dashboard to track learner progress and performance in real time. A core feature is its Talent Marketplace, where qualified users are matched with recruiting companies. All content generation, gamification, analytics, and the multi-tenant architecture are built on a Node.js/React/TypeScript stack.',
-        date: '2025-11-21',
-        languages: ['JavaScript', 'TypeScript', 'Node.js'],
-        tags: ['AI', 'education', 'learning-platform', 'gamification', 'marketplace'],
-        github: 'https://github.com/sajaldev/DXTalent',
-        live: 'https://dxtalent.vercel.app',
-        image: {
-            url: '/images/projects/dxtalent.png',
-            alt: 'DXTalent Project'
-        },
+        slug: 'rakshak',
+        title: 'RAKSHAK',
+        description:
+            'Agentic AI cyber guardian for home IoT — 1st place out of 2,000+ teams at the eRaksha Hackathon (IIT Delhi × CyberPeace Foundation).',
+        fullDescription:
+            'RAKSHAK is an edge-AI security device that sits on a home network and defends the IoT devices behind it. It runs on a Raspberry Pi 5 (with an Nvidia Jetson build for heavier models) and combines two ideas: a reinforcement-learning agent that decides how to respond to a threat, and language-model-driven honeypots that keep an attacker busy while the device learns who they are.\n\nThe response agent is a Dueling DQN trained to choose among isolation, rate-limiting, alerting and decoy actions based on live traffic features from Scapy and nmap scans. The honeypots are powered by TinyLlama 1.1B and dynamically imitate real devices on the network — a smart plug, a camera, a router admin page — so probes and credential attempts are answered convincingly, logged and fingerprinted instead of reaching the real device.\n\nThe project ranked 1st of 2,000+ teams nationwide at eRaksha 2026 and was then selected to demo live at the Global AI Summit 2026 at Bharat Mandapam, New Delhi.',
+        highlights: [
+            'Dueling DQN agent selects autonomous threat responses from live network features',
+            'TinyLlama-1.1B honeypots impersonate real IoT devices to stall and fingerprint attackers',
+            'Runs fully on-device on a Raspberry Pi 5; Flask dashboard for alerts and captured sessions',
+            '1st place, eRaksha Hackathon 2026; demoed at the Global AI Summit 2026'
+        ],
+        date: '2026-03-01',
+        languages: ['Python', 'PyTorch', 'Flask'],
+        tags: ['edge-ai', 'reinforcement-learning', 'iot-security', 'honeypot', 'hackathon-winner'],
+        github: 'https://github.com/SajalDevX/e-rakshak',
+        image: cover('rakshak', 'e-rakshak cover'),
         featured: true,
-        githubInfo: {
-            owner: 'sajaldev',
-            repo: 'DXTalent',
-            stars: 12,
-            contributors: 3
-        }
+        githubInfo: { owner: 'SajalDevX', repo: 'e-rakshak' }
     },
     {
-        slug: 'pathos',
-        title: 'Pathos',
-        description: 'VS Code extension that tracks focus time for indie developers',
-        fullDescription: 'Pathos is a Visual Studio Code extension for tracking developer activity. It runs in the background as you code, recording metrics like file changes, programming language usage, and editing time. These insights are presented in an interactive dashboard to help developers understand their coding habits and productivity patterns. All data is stored locally for privacy. Key features include per-session activity logs, time spent per file, and charts showing work rhythm. The extension is open-source and can be installed via the VSCode Marketplace.',
-        date: '2025-01-08',
-        languages: ['TypeScript', 'VSCode Extension API'],
-        tags: ['developer-tools', 'analytics', 'VSCode', 'productivity'],
-        github: 'https://github.com/sajaldev/pathos',
-        image: {
-            url: '/images/projects/pathos.svg',
-            alt: 'Pathos Extension'
-        },
+        slug: 'pess',
+        title: 'PESS — Public Emergency Surveillance System',
+        description:
+            'Camera-to-phone-call fire response: YOLOv8 detection, Gemini verification to kill false alarms, then Vapi voice agents dial the fire brigade over Twilio.',
+        fullDescription:
+            'PESS turns ordinary RTSP camera feeds into an automated emergency responder. Frames stream through a YOLOv8 detector into a temporal scorer; a detection only counts when the score stays at or above 50 for three sustained seconds, which filters out flicker, reflections and single-frame false positives.\n\nA sustained detection is handed to Gemini 2.5 Flash (via OpenRouter) for a second opinion on the actual frames before anything escalates. Once a fire is confirmed, the system dispatches two sequential voice-agent calls through Vapi and Twilio PSTN — first to the fire brigade, then to the camera owner. The agent answers live questions from the caller strictly from the incident facts it was given (location, time, camera, confidence), so it cannot hallucinate details under pressure.',
+        highlights: [
+            'YOLOv8 + temporal scoring: score ≥ 50 sustained for 3 s before escalation',
+            'Gemini 2.5 Flash verifies frames to eliminate false alarms before any call goes out',
+            'Two sequential Vapi voice-agent calls over Twilio PSTN (fire brigade, then camera owner)',
+            'Voice agent answers only from incident facts — no hallucinated details'
+        ],
+        date: '2026-04-26',
+        languages: ['Python', 'OpenCV'],
+        tags: ['computer-vision', 'yolov8', 'llm', 'voice-agents', 'public-safety'],
+        github: 'https://github.com/SajalDevX/PESS',
+        image: cover('pess', 'PESS cover'),
         featured: true,
-        githubInfo: {
-            owner: 'sajaldev',
-            repo: 'pathos',
-            stars: 8,
-            contributors: 2
-        }
+        githubInfo: { owner: 'SajalDevX', repo: 'PESS' }
     },
     {
-        slug: 'jims',
-        title: 'JIMS (Jewelry Management)',
-        description: 'Full-featured shop management system for jewelry stores with inventory tracking and role-based auth',
-        fullDescription: 'JIMS is a full-featured shop management system for a jewelry store. Built with Next.js and TypeScript, it includes role-based authentication, inventory tracking, order processing, and customer management. Staff users can log in with secure credentials (via the Clerk auth framework) to manage products and orders. The application supports tracking gemstones and jewelry pieces in an inventory database (using Prisma for data handling). Key features include inventory item listings, a shopping cart workflow, sales reports, and notifications for reordering. Its design focuses on security and data consistency in a commerce setting.',
-        date: '2025-06-10',
-        languages: ['TypeScript', 'Next.js', 'React'],
-        tags: ['inventory-management', 'role-based-auth', 'retail', 'Next.js'],
-        github: 'https://github.com/sajaldev/jims',
-        githubInfo: {
-            owner: 'sajaldev',
-            repo: 'jims',
-            stars: 5,
-            contributors: 1
-        }
+        slug: 'prepairo',
+        title: 'PrepAiro',
+        description:
+            'UPSC CSE prep app with 150K+ Play Store installs — founding engineer across the Flutter client and the real-time Spring Boot backend.',
+        fullDescription:
+            'PrepAiro is an AI-driven UPSC preparation platform. I joined as the founding engineer and shipped the cross-platform Flutter app to Android and iOS, where it reached 150,000+ installs on Google Play and 20,000+ on the App Store.\n\nOn the backend I designed the real-time Duel system — 1v1 and multiplayer all-compete rooms — around Centrifugo and Spring Boot. The first version kept room state in memory per pod, which broke whenever the cluster autoscaled; I replaced it with JPA-backed shared room state guarded by Postgres advisory locks, owning-pod heartbeats and an orphaned-room sweeper, making the service horizontally scalable and safe when a pod dies mid-game.\n\nI also built the analytics and growth plumbing: a clickstream pipeline from Flutter events through a Kafka microservice and the Confluent S3 connector (Parquet, ten-minute batches) into DuckDB for ad-hoc queries, integrations with Meta Ads, Google Ads and AppsFlyer processing 2M+ campaign events a month, and finally an in-house attribution microservice that replaced AppsFlyer — 1M+ clicks and 50K+ attributed installs via deep links and conversion tracking.',
+        highlights: [
+            '150K+ Google Play and 20K+ App Store installs',
+            'Pod-death-safe real-time duel rooms: Centrifugo, Postgres advisory locks, heartbeats, orphan sweeper',
+            'Clickstream pipeline: Flutter → Kafka → S3/Parquet → DuckDB',
+            'In-house attribution service replacing AppsFlyer (1M+ clicks, 50K+ installs attributed)'
+        ],
+        date: '2026-03-31',
+        languages: ['Flutter', 'Dart', 'Java', 'Spring Boot', 'PostgreSQL', 'Kafka'],
+        tags: ['mobile', 'real-time', 'kafka', 'analytics', 'production'],
+        live: 'https://play.google.com/store/apps/details?id=ai.prepairo.app',
+        liveLabel: 'Play Store',
+        image: cover('prepairo', 'PrepAiro cover'),
+        featured: false
     },
     {
-        slug: 'moveinsync',
-        title: 'moveInSync',
-        description: 'Backend system for scalable carpooling platform with microservices architecture',
-        fullDescription: 'moveInSync is a backend system for a scalable carpooling platform. It adopts a microservices architecture to meet Indian market needs. The platform enables ride-sharing services with advanced features: it uses secure and efficient request routing via an API gateway and distributed microservices for user management, ride creation, matching riders to drivers, and real-time communications. Each service has a defined role (e.g. Auth Service for JWT auth, Ride Service for creating rides, Matching Service for intelligent rider-driver matching). Additional safety modules include an Emergency SOS service and automated notifications. This architecture makes the system scalable and privacy-focused, with health checks and automated setup scripts for development.',
-        date: '2025-06-21',
-        languages: ['JavaScript', 'Node.js', 'Express'],
-        tags: ['microservices', 'ride-sharing', 'backend', 'transportation'],
-        github: 'https://github.com/sajaldev/carpooling',
-        githubInfo: {
-            owner: 'sajaldev',
-            repo: 'carpooling',
-            stars: 7,
-            contributors: 2
-        }
+        slug: 'jyntrix-ai',
+        title: 'Jyntrix AI',
+        description:
+            'Memory-augmented chat: hybrid retrieval over Qdrant, BM25 and entity graphs gives an LLM long-term semantic, episodic and profile memory.',
+        fullDescription:
+            'Jyntrix AI is a retrieval-augmented generation system built to give AI chats a durable memory across sessions. Memory is split into three kinds — semantic (facts), episodic (what happened when) and profile (who the user is) — and each is stored and retrieved differently.\n\nRetrieval is hybrid: dense vector search in Qdrant, BM25 keyword ranking, entity-based lookup and recency-aware selection are fused and reranked. An async backend pipeline runs query analysis, hybrid ranking and token-budgeted context assembly, then streams the LLM response over Server-Sent Events so the client renders tokens as they arrive.',
+        highlights: [
+            'Semantic, episodic and profile memory with different storage and retrieval strategies',
+            'Hybrid retrieval: Qdrant vectors + BM25 + entity lookup + recency, fused and reranked',
+            'Token-budgeted context assembly and SSE-streamed responses'
+        ],
+        date: '2025-12-27',
+        languages: ['Python', 'Qdrant'],
+        tags: ['rag', 'vector-search', 'llm', 'memory', 'streaming'],
+        github: 'https://github.com/Jyntrix-ai/jyntrix-ai',
+        image: cover('jyntrix-ai', 'jyntrix-ai cover'),
+        githubInfo: { owner: 'Jyntrix-ai', repo: 'jyntrix-ai' }
     },
     {
-        slug: 'bookheaven',
-        title: 'BookHeaven',
-        description: 'Modern online bookstore application with e-commerce checkout and personalized bookshelves',
-        fullDescription: 'BookHeaven is a modern online bookstore application. Built with Next.js and React (TypeScript) on the frontend and PostgreSQL on the backend, it offers a rich user experience for book lovers. Features include comprehensive book management (listing, categorizing, and inventory), personalized bookshelves for each user, secure authentication, and full e-commerce checkout. It integrates with Clerk for user authentication and uses Drizzle ORM for database access. Media management (e.g. book cover uploads) is also supported. In sum, BookHeaven provides a full-stack book retail platform with browsing, account management, and purchasing functionality.',
-        date: '2025-05-17',
-        languages: ['TypeScript', 'React', 'Next.js', 'PostgreSQL'],
-        tags: ['e-commerce', 'bookstore', 'full-stack', 'Next.js'],
-        github: 'https://github.com/sajaldev/bookheaven',
-        githubInfo: {
-            owner: 'sajaldev',
-            repo: 'bookheaven',
-            stars: 10,
-            contributors: 2
-        }
+        slug: 'lufious',
+        title: 'Lufious',
+        description:
+            'AI-powered plant-care app: Clean Architecture Compose client with an expert-picker that routes scans to specialised diagnosis agents.',
+        fullDescription:
+            'Lufious helps people keep plants alive. Point the camera at a plant and an expert-picker algorithm decides which of five-plus specialised AI agents should look at it — disease detection, growth analysis, watering, and so on — then orchestrates the scan per agent and streams the answer back into a WebSocket chat.\n\nThe Android app is built with Jetpack Compose under Clean Architecture and MVVM, split into five modules (auth, garden, scan, shop, profile) wired with Koin. It has its own responsive UI kit (375×812dp scaling), 3D-animated buttons, real-time validation and dynamic theming, a Retrofit + OkHttp networking layer, Room with Flow-based reactive queries for offline use, S3 media uploads and weather/location sync. The backend lives in a companion TypeScript service.',
+        highlights: [
+            'Expert-picker routes each scan to the right specialised agent (5+ agents)',
+            'Five Compose modules under Clean Architecture + MVVM with Koin DI',
+            'Reusable responsive UI kit, Room + Flow offline layer, WebSocket chat, S3 uploads'
+        ],
+        date: '2026-06-12',
+        languages: ['Kotlin', 'Jetpack Compose', 'TypeScript'],
+        tags: ['android', 'jetpack-compose', 'clean-architecture', 'ai-agents'],
+        github: 'https://github.com/SajalDevX/Lufious',
+        image: cover('lufious', 'Lufious cover'),
+        githubInfo: { owner: 'SajalDevX', repo: 'Lufious' }
     },
     {
-        slug: 'epilepsy-detection',
-        title: 'Epilepsy Seizure Detection',
-        description: 'Web application for managing and monitoring epilepsy seizure-prediction devices',
-        fullDescription: 'This project is a web application for managing and monitoring epilepsy seizure-prediction devices. Built with Next.js 15 and integrated with Firebase, it allows patients and caregivers to track predicted seizures and respond quickly. Key functionality includes real-time alerts (via push notifications or emails) when a seizure risk is detected by a connected device, and an emergency contact management system to notify family or doctors immediately. The app collects data from wearable sensors, stores patient profiles in a PostgreSQL database, and displays upcoming risk alerts on a dashboard. Security and data privacy are also incorporated given the medical context.',
-        date: '2025-05-03',
-        languages: ['TypeScript', 'Next.js', 'Firebase', 'PostgreSQL'],
-        tags: ['healthcare', 'IoT', 'monitoring', 'notifications'],
-        github: 'https://github.com/sajaldev/epilepsy-detection'
+        slug: 'gustosa',
+        title: 'Gustosa',
+        description:
+            'College dining app serving 1,000+ students during the 10 PM – 2 AM night-canteen window, with payments and live order tracking.',
+        fullDescription:
+            'Gustosa is the night-canteen delivery app for campus. Co-developed with seniors at AIT, it takes mess and canteen orders between 10 PM and 2 AM and has served 1,000+ students.\n\nThe client is Jetpack Compose with MVVM on a layered UI/domain/data codebase, which let several people build features in parallel. The backend is Firebase and Supabase: Realtime Database drives live order tracking, FCM handles push notifications, and the Minis payment gateway takes care of transactions.',
+        highlights: [
+            '1,000+ students served in the nightly 10 PM – 2 AM window',
+            'Minis payment gateway, Firebase Realtime Database order tracking, FCM notifications',
+            'Layered UI/domain/data architecture enabling parallel feature work'
+        ],
+        date: '2024-10-27',
+        languages: ['Kotlin', 'Jetpack Compose', 'Firebase', 'Supabase'],
+        tags: ['android', 'firebase', 'payments', 'campus'],
+        github: 'https://github.com/SajalDevX/Gustosa',
+        image: cover('gustosa', 'Gustosa cover'),
+        githubInfo: { owner: 'SajalDevX', repo: 'Gustosa' }
     },
     {
-        slug: 'securo',
-        title: 'Securo',
-        description: 'Fleet management solution with real-time GPS tracking and route optimization',
-        fullDescription: 'Securo is a fleet management solution for companies tracking vehicles and drivers. It provides real-time monitoring of vehicle locations, route planning, and driver status. The system includes a GPS tracking interface, where fleet coordinators can view and manage live positions of all vehicles. Securo supports route optimization and allows dispatchers to assign rides to drivers. Safety features include driver check-in alerts and maintenance scheduling. In essence, Securo helps organizations improve logistics and safety by digitizing vehicle tracking and workflow management.',
-        date: '2025-05-01',
-        languages: ['JavaScript', 'Node.js', 'Express'],
-        tags: ['fleet-management', 'logistics', 'real-time', 'GPS'],
-        github: 'https://github.com/sajaldev/securo'
-    },
-    {
-        slug: 'faceauth-sso',
-        title: 'FaceAuth-SSO',
-        description: 'Facial recognition single sign-on application with biometric authentication',
-        fullDescription: 'FaceAuth-SSO is a facial recognition single sign-on application. It enables users to log in to multiple services using face biometric authentication. The system captures a user\'s facial image, processes it with a recognition model, and verifies the identity against stored profiles. Once authenticated, the user gains access through the centralized SSO server without entering passwords for each service. This improves security and user convenience. The key feature is the integration of a face recognition pipeline into a standard web SSO workflow.',
-        date: '2025-04-19',
-        languages: ['JavaScript', 'React', 'Node.js'],
-        tags: ['biometrics', 'authentication', 'SSO', 'facial-recognition'],
-        github: 'https://github.com/sajaldev/faceauth-sso'
-    },
-    {
-        slug: 'digital-watermarking',
-        title: 'Digital Watermarking',
-        description: 'Image watermarking algorithms for IP protection using Hall\'s Property decomposition',
-        fullDescription: 'This repository implements digital watermarking algorithms for images. It uses Hall\'s Property Image Decomposition to embed and detect invisible marks. The project provides basic and enhanced implementations of watermark embedding in digital images to protect ownership and detect tampering. Users can apply a watermark to an image and later verify its presence. This is useful for copyright protection of photos or documents. Key components include embedding routines, attack simulations (to test robustness), and detection algorithms. The focus is on research-level image processing techniques.',
-        date: '2025-04-18',
-        languages: ['Python'],
-        tags: ['security', 'image-processing', 'IP-protection', 'watermarking'],
-        github: 'https://github.com/sajaldev/digital-watermarking'
-    },
-    {
-        slug: 'sault',
-        title: 'Sault',
-        description: 'Blockchain-based document management with IPFS and Aptos for immutability',
-        fullDescription: 'Sault is a blockchain-based document management system. It provides a secure and transparent way to handle important documents (like contracts or certificates) by leveraging blockchain and IPFS. When a document is uploaded, Sault records it on the Aptos blockchain, ensuring immutability and auditability. Each document is hashed and pinned (e.g. via Pinata) to IPFS for decentralized storage, while the blockchain ledger stores a proof of existence. The web interface (React/TypeScript) allows users to upload, view, and share documents; every action is cryptographically tracked. In summary, Sault offers trusted document security and tamper-evidence by combining blockchain and distributed storage.',
-        date: '2025-04-06',
-        languages: ['TypeScript', 'React', 'Aptos', 'IPFS'],
-        tags: ['blockchain', 'document-management', 'DeFi', 'transparency'],
-        github: 'https://github.com/sajaldev/sault'
-    },
-    {
-        slug: 'isekai-io',
-        title: 'Isekai.io',
-        description: 'Virtual world platform with anonymous avatars and 3D community spaces',
-        fullDescription: 'Isekai.io is a virtual world project inspired by the "isekai" genre (where characters escape to another reality). The platform creates an immersive online environment where users can create anonymous avatars, join communities, and interact without revealing their real identities. Built with React and Three.js (for 3D graphics), it offers social features like forming guilds or clubs. Key features include user anonymity, community building, and a rich 3D environment. The intent is to provide a safe, engaging space for users to collaborate and socialize freely. The frontend is built with React (Vite) and Three.js for 3D rendering.',
-        date: '2025-01-15',
-        languages: ['JavaScript', 'React', 'Three.js'],
-        tags: ['virtual-world', 'VR', 'community', 'gaming'],
-        github: 'https://github.com/sajaldev/isekai-io',
-        live: 'https://isekai.io'
-    },
-    {
-        slug: 'synergy',
-        title: 'Synergy',
-        description: 'Open-source project for standardizing educational content structure',
-        fullDescription: 'Synergy is an open-source project aimed at "Standardizing Odd School Structure". The repository deals with creating a unified structure for educational content (possibly curricula or materials). From the code (TypeScript) and context, it appears to be a back-end and front-end suite to organize and manage educational resources. It may include APIs to serve lessons or a content management system to help schools align curricula. The goal is likely to bring consistency to educational content delivery.',
-        date: '2025-01-15',
-        languages: ['TypeScript'],
-        tags: ['education', 'standardization', 'structure', 'OSS'],
-        github: 'https://github.com/sajaldev/synergy'
+        slug: 'vincino',
+        title: 'Vincino',
+        description:
+            'Social platform I founded: three Spring Boot microservices behind an API gateway, PostGIS-powered "users near me" discovery and QR-code sharing.',
+        fullDescription:
+            'Vincino is a social networking platform I founded and led. The backend is a three-service Spring Boot microservice architecture behind an API gateway, with a Flutter client.\n\nIts signature feature is real-time geospatial discovery — "users near me" — built on PostGIS, which asynchronously stores and queries thousands of location points. It also supports QR-code social sharing and professional job-search networking across industries, on a modular architecture intended to grow with the product.',
+        highlights: [
+            'Three-service Spring Boot microservice backend behind an API gateway',
+            'PostGIS geospatial discovery handling 1,000+ asynchronous location queries',
+            'Real-time QR-code sharing and cross-industry professional networking'
+        ],
+        date: '2025-08-01',
+        languages: ['Java', 'Spring Boot', 'PostgreSQL', 'PostGIS', 'Flutter'],
+        tags: ['microservices', 'postgis', 'social', 'flutter'],
+        github: 'https://github.com/VicinVro',
+        image: cover('vincino', 'Vincino cover')
     }
 ];
 
-export const getFeaturedProjects = () => projects.filter(p => p.featured);
-export const getProjectBySlug = (slug: string) => projects.find(p => p.slug === slug);
+export const getFeaturedProjects = () => projects.filter((p) => p.featured);
+export const getProjectBySlug = (slug: string) => projects.find((p) => p.slug === slug);

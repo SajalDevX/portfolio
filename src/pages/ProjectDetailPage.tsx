@@ -4,10 +4,13 @@ import { IconArrowLeft, IconBrandGithub, IconCalendar, IconFileText } from '@tab
 import { getProjectBySlug } from '../config/projects';
 import { ProjectTags } from '../components/projects/ProjectTags';
 import { ProjectCard } from '../components/projects/ProjectCard';
+import { formatDate } from '../utils/date';
+import { useRepoStats } from '../hooks/useGitHub';
 
 export const ProjectDetailPage: React.FC = () => {
 	const { slug } = useParams<{ slug: string }>();
 	const project = slug ? getProjectBySlug(slug) : null;
+	const repo = useRepoStats(project?.githubInfo?.owner, project?.githubInfo?.repo);
 
 	if (!project) {
 		return (
@@ -34,9 +37,8 @@ export const ProjectDetailPage: React.FC = () => {
 				<ProjectCard
 					owner={project.githubInfo.owner}
 					repo={project.githubInfo.repo}
-					description={project.description}
-					stars={project.githubInfo.stars || 0}
-					contributors={project.githubInfo.contributors || 0}
+					description={repo?.description ?? project.description}
+					stars={repo?.stars ?? null}
 				/>
 			)}
 
@@ -47,7 +49,7 @@ export const ProjectDetailPage: React.FC = () => {
 				<div className="flex flex-wrap items-center gap-4 text-sm">
 					<div className="text-subtext0 flex items-center gap-1.5">
 						<IconCalendar size={16} />
-						<span>March 01, 2025</span>
+						<span>{formatDate(project.date)}</span>
 					</div>
 
 					{project.github && (
@@ -58,6 +60,7 @@ export const ProjectDetailPage: React.FC = () => {
 							className="hover:text-accent inline-flex items-center gap-1.5 transition-colors"
 						>
 							<IconBrandGithub size={16} />
+							<span>GitHub</span>
 						</a>
 					)}
 
@@ -69,6 +72,7 @@ export const ProjectDetailPage: React.FC = () => {
 							className="hover:text-accent inline-flex items-center gap-1.5 transition-colors"
 						>
 							<IconFileText size={16} />
+							<span>{project.liveLabel ?? 'Live'}</span>
 						</a>
 					)}
 				</div>
@@ -83,7 +87,6 @@ export const ProjectDetailPage: React.FC = () => {
 
 			{/* Description */}
 			<div className="prose prose-invert max-w-none space-y-6">
-				<h2 className="text-2xl font-semibold">{project.title}</h2>
 				{project.fullDescription.split('\n\n').map((paragraph, index) => (
 					<p key={index} className="text-subtext0 text-base leading-relaxed">
 						{paragraph}
@@ -93,12 +96,10 @@ export const ProjectDetailPage: React.FC = () => {
 
 			{/* Key Features Section */}
 			<div className="space-y-4">
-				<h2 className="text-2xl font-semibold">Key Features</h2>
+				<h2 className="text-2xl font-semibold">Highlights</h2>
 				<ul className="text-subtext0 ml-6 list-disc space-y-2">
-					{project.tags.map((tag) => (
-						<li key={tag}>
-							<span className="text-text font-medium capitalize">{tag.replace(/-/g, ' ')}</span>
-						</li>
+					{project.highlights.map((h) => (
+						<li key={h}>{h}</li>
 					))}
 				</ul>
 			</div>

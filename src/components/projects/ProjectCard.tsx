@@ -5,18 +5,14 @@ interface ProjectCardProps {
 	owner: string;
 	repo: string;
 	description: string;
-	stars: number;
-	contributors: number;
-	contributorAvatars?: string[];
+	stars: number | null;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
 	owner,
 	repo,
 	description,
-	stars,
-	contributors,
-	contributorAvatars = []
+	stars
 }) => {
 	return (
 		<div className="bg-surface1 mx-auto max-w-2xl overflow-hidden rounded-2xl p-6 shadow-xl">
@@ -29,10 +25,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 						<div className="bg-green h-3 w-3 rounded-full"></div>
 					</div>
 				</div>
-				<div className="flex items-center gap-2 text-sm">
-					<span className="text-subtext0">{stars}</span>
-					<IconStar size={16} className="text-yellow fill-yellow" />
-				</div>
+				{stars !== null && (
+					<div className="flex items-center gap-2 text-sm" title="GitHub stars">
+						<span className="text-subtext0">{stars}</span>
+						<IconStar size={16} className="text-yellow fill-yellow" />
+					</div>
+				)}
 			</div>
 
 			{/* Repository Info */}
@@ -45,22 +43,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
 				<p className="text-text text-base leading-relaxed">{description}</p>
 
-				{/* Contributors */}
-				{contributorAvatars.length > 0 && (
-					<div className="flex items-center justify-between pt-2">
-						<div className="flex -space-x-2">
-							{contributorAvatars.map((avatar, index) => (
-								<img
-									key={index}
-									src={avatar}
-									alt={`Contributor ${index + 1}`}
-									className="border-surface2 h-10 w-10 rounded-full border-2"
-								/>
-							))}
-						</div>
-						<span className="text-subtext0 text-sm">{contributors} Contributors</span>
-					</div>
-				)}
 			</div>
 		</div>
 	);

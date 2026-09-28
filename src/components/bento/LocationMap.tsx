@@ -8,9 +8,9 @@ export const LocationMap: React.FC = () => {
 	const [isDaytime, setIsDaytime] = useState(true);
 	const mapInstanceRef = useRef<any>(null);
 
-	const hometownCoords: [number, number] = [23.1815, 79.9864];
+	const hometownCoords: [number, number] = [18.5204, 73.8567];
 	const hometownTimezone = 'Asia/Kolkata';
-	const hometownLabel = 'Jabalpur, IN';
+	const hometownLabel = 'Pune, IN';
 
 	const updateTime = () => {
 		const now = new Date();
@@ -38,7 +38,7 @@ export const LocationMap: React.FC = () => {
 
 				mapInstanceRef.current = L.map(mapContainer.current, {
 					zoomControl: false,
-					attributionControl: false,
+					attributionControl: true,
 					dragging: true,
 					scrollWheelZoom: true,
 					doubleClickZoom: true,
@@ -47,9 +47,10 @@ export const LocationMap: React.FC = () => {
 					touchZoom: true
 				}).setView(hometownCoords, 11);
 
-				L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+				L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+					className: 'map-tiles',
 					maxZoom: 19,
-					attribution: '',
+					attribution: '© OpenStreetMap contributors',
 					keepBuffer: 4,
 					updateWhenIdle: false,
 					updateWhenZooming: false
@@ -82,7 +83,7 @@ export const LocationMap: React.FC = () => {
 				className="text-text hover:text-accent mb-3 flex w-full cursor-pointer items-center gap-2 text-left text-sm font-semibold transition-colors"
 			>
 				<IconMapPin size={16} className="text-accent" />
-				Currently Based In 📍
+				Based in
 			</button>
 			<div
 				className="bg-surface0 relative w-full flex-1 overflow-hidden rounded-lg"
